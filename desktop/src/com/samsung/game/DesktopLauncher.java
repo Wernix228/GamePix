@@ -10,7 +10,7 @@ public class DesktopLauncher {
 		Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
 		config.setWindowedMode(1536,864);
 		config.setForegroundFPS(60);
-		config.setTitle("Cyber Niger");
+		config.setTitle("Game");
 		new Lwjgl3Application(new Game(), config);
 	}
 }
