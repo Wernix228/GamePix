@@ -5,23 +5,51 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class Player {
 
-    SpriteBatch batch;
-    Texture img;
-    KeyHandler keyH;
+    private SpriteBatch batch;
+    private Texture img;
+    private KeyHandler keyH;
 
-    public  Player(KeyHandler keyH){
+    private int x;
+    private int y;
+
+    private int originalWidth = 32;
+    private int originalHeight = 32;
+
+    private int scale = 3;
+
+    private int width = originalWidth * scale;
+    private int height = originalHeight * scale;
+
+    public Player(KeyHandler keyH) {
         this.img = new Texture("player.png");
         this.batch = new SpriteBatch();
         this.keyH = keyH;
     }
-    public void render(){
-        batch.begin();
-        batch.draw(img,keyH.playerX,keyH.playerY,64,64);
-        batch.end();
+
+    public void render() {
+        setCoordinates();
+        draw(x,y);
+//        getLocation();
     }
-    public void dispose(){
+
+    public void dispose() {
         batch.dispose();
         img.dispose();
+    }
+
+    private void draw(int x,int y) {
+
+        batch.begin();
+        batch.draw(img, x, y, width, height);
+        batch.end();
+
+    }
+    private void setCoordinates(){
+        x = keyH.getPlayerX();
+        y = keyH.getPlayerY();
+    }
+    private void getLocation(){
+        System.out.println(x + "  " + y);
     }
 
 }
