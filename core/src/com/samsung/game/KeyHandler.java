@@ -49,20 +49,16 @@ public class KeyHandler {
         }
     }
 
-    private void boostSpeed() {
-        playerSpeed = defaultSpeed * 2;
+    public int getX() {
+        return x;
     }
 
-    public int getPlayerX() {
-        return x;
+    public int getY() {
+        return y;
     }
 
     public void setPlayerX(int playerX) {
         this.x = playerX;
-    }
-
-    public int getPlayerY() {
-        return y;
     }
 
     public void setPlayerY(int playerY) {
@@ -75,5 +71,9 @@ public class KeyHandler {
 
     public void setPlayerSpeed(int playerSpeed) {
         this.playerSpeed = playerSpeed;
+    }
+
+    private void boostSpeed() {
+        playerSpeed = defaultSpeed * 2;
     }
 }
