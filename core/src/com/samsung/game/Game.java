@@ -15,7 +15,7 @@ public class Game extends ApplicationAdapter {
     public void create() {
 
         keyH = new KeyHandler(0, 0, 4);
-        map = new Map(64,64,keyH);
+        map = new Map(16,16,keyH);
         player = new Player(keyH);
 
     }
