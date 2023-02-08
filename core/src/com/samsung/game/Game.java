@@ -3,12 +3,16 @@ package com.samsung.game;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.samsung.game.entity.Player;
 import com.samsung.game.world.Map;
 
 public class Game extends ApplicationAdapter {
     KeyHandler keyH;
     Player player;
+    SpriteBatch batch;
+    Texture texture;
     Map map;
 
     @Override
@@ -17,6 +21,8 @@ public class Game extends ApplicationAdapter {
         keyH = new KeyHandler(0, 0, 4);
         map = new Map(16,16,keyH);
         player = new Player(keyH);
+        batch = new SpriteBatch();
+        texture = new Texture("field_touch.png");
 
     }
 
@@ -28,6 +34,9 @@ public class Game extends ApplicationAdapter {
         keyH.render();
         map.run();
         player.render();
+        batch.begin();
+        batch.draw(texture,0,0,300,300);
+        batch.end();
     }
 
     @Override
@@ -44,5 +53,7 @@ public class Game extends ApplicationAdapter {
     public void dispose() {
         player.dispose();
         map.dispose();
+        texture.dispose();
+        batch.dispose();
     }
 }

@@ -39,23 +39,15 @@ public class Tile {
         batch.dispose();
     }
     private void loadTexture(){
-        if (sprite == 1){
+        if (sprite == 0){
             batch = new SpriteBatch();
             texture = new Texture("grass_block.png");
-        }
-        if (sprite == 2){
-            batch = new SpriteBatch();
-            texture = new Texture("sand.png");
-        }
-        if (sprite == 3){
-            batch = new SpriteBatch();
-            texture = new Texture("water.png");
         }
     }
 
     private void move() {
-        x = worldX + keyH.getX();
-        y = worldY + keyH.getY();
+        x = worldX + keyH.getX() * -1;
+        y = worldY + keyH.getY() * -1;
     }
 
     private void draw() {

@@ -43,8 +43,18 @@ public class KeyHandler {
             }else playerSpeed = 4;
 
             if (Gdx.input.isTouched()){
-                x = Gdx.input.getX();
-                y = Gdx.input.getY();
+                if (Gdx.input.getX() > 150 && Gdx.input.getX() < 300){
+                    x += playerSpeed;
+                }else if (Gdx.input.getX() < 300){
+                    x -= playerSpeed;
+                }
+                if (Gdx.input.getY() > 686){
+                    y -= playerSpeed;
+                }else if (Gdx.input.getY() > 536){
+                    y += playerSpeed;
+                }
+//                x = Gdx.input.getX();
+//                y = Gdx.input.getY();
             }
         }
     }
