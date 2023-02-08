@@ -19,7 +19,7 @@ public class Game extends ApplicationAdapter {
     public void create() {
 
         keyH = new KeyHandler(0, 0, 4);
-        map = new Map(16,16,keyH);
+        map = new Map(16, 16, keyH);
         player = new Player(keyH);
         batch = new SpriteBatch();
         texture = new Texture("field_touch.png");
@@ -35,7 +35,7 @@ public class Game extends ApplicationAdapter {
         map.run();
         player.render();
         batch.begin();
-        batch.draw(texture,0,0,300,300);
+        batch.draw(texture, 0, 0, Gdx.graphics.getWidth() / 5.12f, Gdx.graphics.getHeight() / 2.88f);
         batch.end();
     }
 

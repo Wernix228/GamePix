@@ -37,24 +37,24 @@ public class KeyHandler {
 
             if (Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT)) {
                 boost = true;
-            }else boost = false;
-            if (boost){
+            } else boost = false;
+            if (boost) {
                 boostSpeed();
-            }else playerSpeed = 4;
+            } else playerSpeed = 4;
 
-            if (Gdx.input.isTouched()){
-                if (Gdx.input.getX() > 150 && Gdx.input.getX() < 300){
+            if (Gdx.input.isTouched()) {
+                if (Gdx.input.getX() < 3 * Gdx.graphics.getWidth() / 15.36f && Gdx.input.getX() > 2 * Gdx.graphics.getWidth() / 15.36f && touchLimit()) {
                     x += playerSpeed;
-                }else if (Gdx.input.getX() < 300){
+                } else if (Gdx.input.getX() < Gdx.graphics.getWidth() / 15.36f && touchLimit()) {
                     x -= playerSpeed;
                 }
-                if (Gdx.input.getY() > 686){
+                if (Gdx.input.getY() > Gdx.graphics.getHeight() - Gdx.graphics.getHeight() / 2.88f / 3 && touchLimit()) {
                     y -= playerSpeed;
-                }else if (Gdx.input.getY() > 536){
+                }else if (Gdx.input.getY() > Gdx.graphics.getHeight() - Gdx.graphics.getHeight() / 2.88f && Gdx.input.getY() < Gdx.graphics.getHeight() - Gdx.graphics.getHeight() / 2.88f / 2 && touchLimit()){
+                    //pls FIX IT
                     y += playerSpeed;
                 }
-//                x = Gdx.input.getX();
-//                y = Gdx.input.getY();
+                System.out.println(Gdx.input.getY());
             }
         }
     }
@@ -85,5 +85,13 @@ public class KeyHandler {
 
     private void boostSpeed() {
         playerSpeed = defaultSpeed * 2;
+    }
+
+    private boolean touchLimit() {
+        boolean limitY = false;
+        if (Gdx.input.getY() > Gdx.graphics.getHeight() - Gdx.graphics.getHeight() / 2.88f && Gdx.input.getX() < Gdx.graphics.getWidth() / 5.12f) {
+            limitY = true;
+        }
+        return limitY;
     }
 }
