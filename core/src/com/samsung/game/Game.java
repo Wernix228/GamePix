@@ -16,6 +16,19 @@ public class Game extends ApplicationAdapter {
     Texture texture;
     Map map;
 
+    String os;
+
+    public Game(byte os){
+        if (os == 1){
+            this.os = "desktop";
+        }else if (os == 2){
+            this.os = "android";
+        }else if (os == 3){
+            this.os = "Html";
+        }else if (os == 4){
+            this.os = "IOS";
+        }
+    }
     @Override
     public void create() {
 
@@ -24,7 +37,9 @@ public class Game extends ApplicationAdapter {
         map = new Map(30, 30, keyH);
         player = new Player(keyH);
         batch = new SpriteBatch();
-        texture = new Texture("field_touch.png");
+        if (os.equals("android")){
+            texture = new Texture("field_touch.png");
+        }else texture = new Texture("badlogic.jpg");
 
     }
 
