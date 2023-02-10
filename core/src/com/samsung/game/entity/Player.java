@@ -1,5 +1,6 @@
 package com.samsung.game.entity;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.samsung.game.KeyHandler;
@@ -37,7 +38,7 @@ public class Player extends Entity {
     private void draw() {
 
         batch.begin();
-        batch.draw(img, 1536/2-width, 864/2-height, width, height);
+        batch.draw(img, Gdx.graphics.getWidth()/2-width, Gdx.graphics.getHeight()/2-height, width, height);
         batch.end();
 
     }

@@ -1,43 +1,59 @@
 package com.samsung.game.world;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.utils.Array;
 import com.samsung.game.KeyHandler;
 
-public class Map implements Runnable{
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
+public class Map implements Runnable {
 
     private int worldX;
     private int worldY;
-    private Tile[][] field;
+    private Array<Tile> tiles = new Array<Tile>();
     private KeyHandler keyH;
-    public Map(int x,int y,KeyHandler keyH){
+
+    public Map(int x, int y, KeyHandler keyH) {
         this.worldX = x;
         this.worldY = y;
         this.keyH = keyH;
-        field = new Tile[worldX][worldY];
         loadMap();
     }
+
     @Override
     public void run() {
         render();
     }
-    public void render(){
-        for (int i = 0; i < worldX; i++) {
-            for (int j = 0; j < worldY; j++) {
-                field[i][j].render();
-            }
-        }
-    }
-    public void dispose(){
-        for (int i = 0; i < worldX; i++) {
-            for (int j = 0; j < worldY; j++) {
-                field[i][j].dispose();
-            }
+
+    public void render() {
+        for (Tile tile : tiles) {
+            tile.render();
         }
     }
 
-    private void loadMap(){
+    public void dispose() {
+        for (Tile tile : tiles) {
+            tile.dispose();
+        }
+    }
+
+
+    private void loadMap() {
+
+        FileHandle file = Gdx.files.internal("maps/map01.txt");
+        String[] tiles = file.readString().split("\n");
+
         for (int i = 0; i < worldX; i++) {
             for (int j = 0; j < worldY; j++) {
-                field[i][j] = new Tile(i,j,0,keyH);
+                String til = String.valueOf(tiles[j].charAt(i));
+                System.out.println(til);
+                Tile tile = new Tile(i,j,til,keyH);
+                this.tiles.add(tile);
             }
         }
     }

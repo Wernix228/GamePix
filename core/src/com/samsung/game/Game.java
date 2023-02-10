@@ -3,6 +3,7 @@ package com.samsung.game;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.samsung.game.entity.Player;
@@ -18,8 +19,9 @@ public class Game extends ApplicationAdapter {
     @Override
     public void create() {
 
+        Gdx.graphics.setFullscreenMode(Gdx.graphics.getDisplayMode());
         keyH = new KeyHandler(0, 0, 4);
-        map = new Map(16, 16, keyH);
+        map = new Map(30, 30, keyH);
         player = new Player(keyH);
         batch = new SpriteBatch();
         texture = new Texture("field_touch.png");
