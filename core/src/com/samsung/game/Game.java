@@ -28,6 +28,7 @@ public class Game extends ApplicationAdapter {
         }else if (os == 4){
             this.os = "IOS";
         }
+
     }
     @Override
     public void create() {
