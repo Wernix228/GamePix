@@ -15,7 +15,7 @@ public class Map implements Runnable {
 
     private int worldX;
     private int worldY;
-    private Array<Tile> tiles = new Array<Tile>();
+    public Array<Tile> tiles = new Array<Tile>();
     private KeyHandler keyH;
 
     public Map(int x, int y, KeyHandler keyH) {
@@ -44,15 +44,15 @@ public class Map implements Runnable {
 
 
     private void loadMap() {
-
-        FileHandle file = Gdx.files.internal("maps/map01.txt");
-        String[] tiles = file.readString().split("\n");
+        FileHandle file = Gdx.files.internal("maps/map02.txt");
+        String tils = file.readString().replaceAll(" ", "");
+        String tiles[] = tils.split("\n");
 
         for (int i = 0; i < worldX; i++) {
             for (int j = 0; j < worldY; j++) {
                 String til = String.valueOf(tiles[j].charAt(i));
                 System.out.println(til);
-                Tile tile = new Tile(i,j,til,keyH);
+                Tile tile = new Tile(i,-j,til,keyH);
                 this.tiles.add(tile);
             }
         }

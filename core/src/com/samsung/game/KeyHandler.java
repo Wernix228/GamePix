@@ -11,13 +11,15 @@ public class KeyHandler {
     private int defaultSpeed;
     private int playerSpeed;
     private boolean boost;
+    private String platform;
 
     long lastDropTime = System.nanoTime();
 
-    public KeyHandler(int playerX, int playerY, int playerSpeed) {
+    public KeyHandler(int playerX, int playerY, int playerSpeed,String platform) {
         this.x = playerX;
         this.y = playerY;
         this.defaultSpeed = playerSpeed;
+        this.platform = platform;
     }
 
     public void render() {
@@ -42,18 +44,20 @@ public class KeyHandler {
                 boostSpeed();
             } else playerSpeed = 4;
 
-            if (Gdx.input.isTouched()) {
-                if (Gdx.input.getX() < 3 * Gdx.graphics.getWidth() / 15.36f && Gdx.input.getX() > 2 * Gdx.graphics.getWidth() / 15.36f && touchLimit()) {
-                    x += playerSpeed;
-                } else if (Gdx.input.getX() < Gdx.graphics.getWidth() / 15.36f && touchLimit()) {
-                    x -= playerSpeed;
+            if (platform.equals("Android")) {
+                if (Gdx.input.isTouched()) {
+                    if (Gdx.input.getX() < 3 * Gdx.graphics.getWidth() / 15.36f && Gdx.input.getX() > 2 * Gdx.graphics.getWidth() / 15.36f && touchLimit()) {
+                        x += playerSpeed;
+                    } else if (Gdx.input.getX() < Gdx.graphics.getWidth() / 15.36f && touchLimit()) {
+                        x -= playerSpeed;
+                    }
+                    if (Gdx.input.getY() > Gdx.graphics.getHeight() - Gdx.graphics.getHeight() / 2.88f / 3 && touchLimit()) {
+                        y -= playerSpeed;
+                    } else if (Gdx.input.getY() > Gdx.graphics.getHeight() - Gdx.graphics.getHeight() / 2.88f && Gdx.input.getY() < Gdx.graphics.getHeight() - Gdx.graphics.getHeight() / 2.88f / 1.5f && touchLimit()) {
+                        y += playerSpeed;
+                    }
+                    System.out.println(Gdx.input.getY());
                 }
-                if (Gdx.input.getY() > Gdx.graphics.getHeight() - Gdx.graphics.getHeight() / 2.88f / 3 && touchLimit()) {
-                    y -= playerSpeed;
-                }else if (Gdx.input.getY() > Gdx.graphics.getHeight() - Gdx.graphics.getHeight() / 2.88f && Gdx.input.getY() < Gdx.graphics.getHeight() - Gdx.graphics.getHeight() / 2.88f / 1.5f && touchLimit()){
-                    y += playerSpeed;
-                }
-                System.out.println(Gdx.input.getY());
             }
         }
     }

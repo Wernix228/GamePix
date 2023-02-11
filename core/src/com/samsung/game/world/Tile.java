@@ -4,13 +4,14 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.samsung.game.KeyHandler;
 
+import java.awt.Rectangle;
+
 public class Tile {
 
     private int x;
     private int y;
     private int worldX;
     private int worldY;
-
 
     private final int defaultSize = 32;
     private final int scale = 2;
@@ -41,37 +42,37 @@ public class Tile {
     private void loadTexture(){
         if (sprite.equals("1")){
             batch = new SpriteBatch();
-            texture = new Texture("textures/tiles/floor.png");
+            texture = new Texture("textures/tiles/001.png");
         }else if (sprite.equals("2")){
             batch = new SpriteBatch();
-            texture = new Texture("textures/tiles/wall.png");
+            texture = new Texture("textures/tiles/002.png");
         }else if (sprite.equals("3")){
             batch = new SpriteBatch();
-            texture = new Texture("textures/tiles/side_fence.png");
+            texture = new Texture("textures/tiles/003.png");
         }else if (sprite.equals("4")){
             batch = new SpriteBatch();
-            texture = new Texture("textures/tiles/fence.png");
+            texture = new Texture("textures/tiles/004.png");
         }else if (sprite.equals("5")){
             batch = new SpriteBatch();
-            texture = new Texture("textures/tiles/fence_left_side_up.png");
+            texture = new Texture("textures/tiles/005.png");
         }else if (sprite.equals("6")){
             batch = new SpriteBatch();
-            texture = new Texture("textures/tiles/fence_right_side_up.png");
+            texture = new Texture("textures/tiles/006.png");
         }else if (sprite.equals("7")){
             batch = new SpriteBatch();
-            texture = new Texture("textures/tiles/fence_left_side_down.png");
+            texture = new Texture("textures/tiles/007.png");
         }else if (sprite.equals("8")){
             batch = new SpriteBatch();
-            texture = new Texture("textures/tiles/fence_right_side_down.png");
+            texture = new Texture("textures/tiles/008.png");
         }else if(sprite.equals("0")){
             batch = new SpriteBatch();
-            texture = new Texture("textures/tiles/empty.png");
+            texture = new Texture("textures/tiles/000.png");
         }
     }
 
     private void move() {
-        x = (worldX + keyH.getX()) * -1;
-        y = (worldY + keyH.getY()) * -1;
+        x = (worldX + keyH.getX() * -1);
+        y = (worldY + keyH.getY() * -1);
     }
 
     private void draw() {
@@ -80,5 +81,8 @@ public class Tile {
         batch.end();
     }
 
+    public int getX(){return x;}
+    public int getY(){return y;}
+    public int getDefaultSize(){return defaultSize;}
 
 }

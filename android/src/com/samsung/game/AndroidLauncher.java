@@ -12,7 +12,7 @@ public class AndroidLauncher extends AndroidApplication {
 		AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
 		config.useAccelerometer = false;
 		config.useCompass = false;
-		initialize(new Game((byte) 2), config);
+		initialize(new Game("Android"), config);
 
 	}
 }
