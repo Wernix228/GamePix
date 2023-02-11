@@ -35,6 +35,11 @@ public class Map implements Runnable {
             tile.dispose();
         }
     }
+    public void getInfo() {
+        for (Tile tile : tiles) {
+            tile.getInfo();
+        }
+    }
 
 
     private void loadMap() {

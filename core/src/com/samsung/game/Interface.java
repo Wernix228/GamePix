@@ -10,9 +10,19 @@ public class Interface {
     Texture texture;
     String platform;
 
-    public Interface(String platform){
+    float scaleW;
+    float scaleY;
+
+    public Interface(String platform,float scaleW,float scaleY){
         this.platform = platform;
+        this.scaleW = scaleW;
+        this.scaleY = scaleY;
     }
+
+    public Interface(String platform) {
+
+    }
+
     public void create(){
         if (platform.equals("Android")){
             batch = new SpriteBatch();
@@ -22,7 +32,7 @@ public class Interface {
     public void render(){
         if (platform.equals("Android")) {
             batch.begin();
-            batch.draw(texture, 0, 0, Gdx.graphics.getWidth() / 16 * 3, Gdx.graphics.getHeight() / 9 * 3);
+            batch.draw(texture, 0, 0, Gdx.graphics.getWidth() / 16 * 3 * scaleW, Gdx.graphics.getHeight() / 9 * 3 * scaleY);
             batch.end();
         }
     }

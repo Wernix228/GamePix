@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.utils.Array;
 import com.samsung.game.entity.Player;
+import com.samsung.game.entity.SolidArea;
 import com.samsung.game.world.Map;
 import com.samsung.game.world.Tile;
 
@@ -15,9 +16,17 @@ public class Game extends ApplicationAdapter {
     String platform;
     Interface anInterface;
 
+    int timer = 0;
+    boolean fullScreen;
+
     public Game(String platform) {
         this.platform = platform;
         anInterface = new Interface(platform);
+    }
+    public Game(String platform,boolean fullScreen,float scaleW,float scaleY) {
+        this.platform = platform;
+        anInterface = new Interface(platform,scaleW,scaleY);
+        this.fullScreen = fullScreen;
     }
 
     @Override
@@ -25,10 +34,11 @@ public class Game extends ApplicationAdapter {
 
         anInterface.create();
         keyH = new KeyHandler(0, 0, 4,platform);
-        map = new Map(25,25,keyH);
         player = new Player(keyH);
-
-        Gdx.graphics.setFullscreenMode(Gdx.graphics.getDisplayMode());
+        map = new Map(25,25,keyH);
+        if (fullScreen){
+            Gdx.graphics.setFullscreenMode(Gdx.graphics.getDisplayMode());
+        }
 
     }
 
@@ -37,10 +47,16 @@ public class Game extends ApplicationAdapter {
         Gdx.gl.glClearColor(.01f, .01f, .01f, 1f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        anInterface.render();
         keyH.render();
         map.run();
         player.render();
+        anInterface.render();
+
+        timer++;
+        if (timer == 120){
+            getInfo();
+            timer = 0;
+        }
 
     }
 
@@ -58,5 +74,8 @@ public class Game extends ApplicationAdapter {
     public void dispose() {
         player.dispose();
         map.dispose();
+    }
+    private void getInfo(){
+        map.getInfo();
     }
 }
