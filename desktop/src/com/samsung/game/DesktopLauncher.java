@@ -15,6 +15,6 @@ public class DesktopLauncher {
 		config.setWindowedMode(screenSize.width,screenSize.height);
 		config.setForegroundFPS(60);
 		config.setTitle("Game");
-		new Lwjgl3Application(new Game("Desktop"), config);
+		new Lwjgl3Application(new Game("Android"), config);
 	}
 }

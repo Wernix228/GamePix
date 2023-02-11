@@ -5,12 +5,6 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.Array;
 import com.samsung.game.KeyHandler;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-
 public class Map implements Runnable {
 
     private int worldX;
@@ -51,7 +45,6 @@ public class Map implements Runnable {
         for (int i = 0; i < worldX; i++) {
             for (int j = 0; j < worldY; j++) {
                 String til = String.valueOf(tiles[j].charAt(i));
-                System.out.println(til);
                 Tile tile = new Tile(i,-j,til,keyH);
                 this.tiles.add(tile);
             }

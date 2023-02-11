@@ -45,6 +45,9 @@ public class KeyHandler {
             } else playerSpeed = 4;
 
             if (platform.equals("Android")) {
+
+
+
                 if (Gdx.input.isTouched()) {
                     if (Gdx.input.getX() < 3 * Gdx.graphics.getWidth() / 15.36f && Gdx.input.getX() > 2 * Gdx.graphics.getWidth() / 15.36f && touchLimit()) {
                         x += playerSpeed;
@@ -56,7 +59,6 @@ public class KeyHandler {
                     } else if (Gdx.input.getY() > Gdx.graphics.getHeight() - Gdx.graphics.getHeight() / 2.88f && Gdx.input.getY() < Gdx.graphics.getHeight() - Gdx.graphics.getHeight() / 2.88f / 1.5f && touchLimit()) {
                         y += playerSpeed;
                     }
-                    System.out.println(Gdx.input.getY());
                 }
             }
         }
@@ -92,7 +94,7 @@ public class KeyHandler {
 
     private boolean touchLimit() {
         boolean limitY = false;
-        if (Gdx.input.getY() > Gdx.graphics.getHeight() - Gdx.graphics.getHeight() / 2.88f && Gdx.input.getX() < Gdx.graphics.getWidth() / 5.12f) {
+        if (Gdx.input.getY() > Gdx.graphics.getHeight() - Gdx.graphics.getHeight() / 1.88f && Gdx.input.getX() < Gdx.graphics.getWidth() / 5.12f) {
             limitY = true;
         }
         return limitY;
