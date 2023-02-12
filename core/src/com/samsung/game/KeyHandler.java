@@ -15,7 +15,7 @@ public class KeyHandler {
 
     long lastDropTime = System.nanoTime();
 
-    public KeyHandler(int playerX, int playerY, int playerSpeed,String platform) {
+    public KeyHandler(int playerX, int playerY, int playerSpeed, String platform) {
         this.x = playerX;
         this.y = playerY;
         this.defaultSpeed = playerSpeed;
@@ -47,18 +47,8 @@ public class KeyHandler {
             if (platform.equals("Android")) {
 
 
+                if (Gdx.input.isTouched() && touchLimit()) {
 
-                if (Gdx.input.isTouched()) {
-                    if (Gdx.input.getX() < 3 * Gdx.graphics.getWidth() / 15.36f && Gdx.input.getX() > 2 * Gdx.graphics.getWidth() / 15.36f && touchLimit()) {
-                        x += playerSpeed;
-                    } else if (Gdx.input.getX() < Gdx.graphics.getWidth() / 15.36f && touchLimit()) {
-                        x -= playerSpeed;
-                    }
-                    if (Gdx.input.getY() > Gdx.graphics.getHeight() - Gdx.graphics.getHeight() / 2.88f / 3 && touchLimit()) {
-                        y -= playerSpeed;
-                    } else if (Gdx.input.getY() > Gdx.graphics.getHeight() - Gdx.graphics.getHeight() / 2.88f && Gdx.input.getY() < Gdx.graphics.getHeight() - Gdx.graphics.getHeight() / 2.88f / 1.5f && touchLimit()) {
-                        y += playerSpeed;
-                    }
                 }
             }
         }
@@ -92,11 +82,20 @@ public class KeyHandler {
         playerSpeed = defaultSpeed * 2;
     }
 
-    private boolean touchLimit() {
-        boolean limitY = false;
-        if (Gdx.input.getY() > Gdx.graphics.getHeight() - Gdx.graphics.getHeight() / 1.88f && Gdx.input.getX() < Gdx.graphics.getWidth() / 5.12f) {
-            limitY = true;
+    public static boolean touchLimit() {
+        boolean limit = false;
+        int scaleX = Gdx.graphics.getWidth() / 16;
+        int scaleY = Gdx.graphics.getHeight() / 9;
+
+        float scaleTouchX = 10f;
+        float scaleTouchY = 5f;
+
+        int limitX = (int) (Gdx.graphics.getWidth() - scaleX * scaleTouchX);
+        int limitY = (int) (scaleY * scaleTouchY);
+
+        if (Gdx.input.getX() <  limitX && Gdx.input.getY() > limitY) {
+            limit = true;
         }
-        return limitY;
+        return limit;
     }
 }

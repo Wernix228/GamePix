@@ -22,7 +22,7 @@ public class Player extends Entity {
     }
 
     public void render() {
-        setCoordinates();
+//        setCoordinates();
         draw();
         //getLocation();
     }
@@ -53,8 +53,8 @@ public class Player extends Entity {
 
     }
 
-    private void getLocation() {
-        System.out.println(x + "  " + y);
+    public void getLocation() {
+        System.out.println("Player: " + xP + "  " + yP);
     }
 
 

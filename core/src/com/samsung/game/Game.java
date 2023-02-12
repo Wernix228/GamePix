@@ -35,7 +35,7 @@ public class Game extends ApplicationAdapter {
         anInterface.create();
         keyH = new KeyHandler(0, 0, 4,platform);
         player = new Player(keyH);
-        map = new Map(25,25,keyH);
+        map = new Map(50,50,keyH);
         if (fullScreen){
             Gdx.graphics.setFullscreenMode(Gdx.graphics.getDisplayMode());
         }
@@ -76,6 +76,7 @@ public class Game extends ApplicationAdapter {
         map.dispose();
     }
     private void getInfo(){
-        map.getInfo();
+//        map.getInfo();
+        player.getLocation();
     }
 }

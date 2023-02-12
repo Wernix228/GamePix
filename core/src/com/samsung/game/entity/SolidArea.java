@@ -23,9 +23,11 @@ public class SolidArea {
     private boolean canMove(){
         boolean move = false;
 
-        if (keyH.getX() == tile.getX() && collision){
-            System.out.println("lol");
-        }
+//        if (keyH.getX() == tile.getX() && collision){
+//            System.out.println("lol"); Rabotaet
+//
+//        }
+
 
         return move;
     }

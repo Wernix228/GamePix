@@ -43,7 +43,7 @@ public class Map implements Runnable {
 
 
     private void loadMap() {
-        FileHandle file = Gdx.files.internal("maps/map02.txt");
+        FileHandle file = Gdx.files.internal("maps/map01.txt");
         String tils = file.readString().replaceAll(" ", "");
         String tiles[] = tils.split("\n");
 

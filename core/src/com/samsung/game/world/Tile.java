@@ -13,7 +13,7 @@ public class Tile {
     private int y;
     private int worldX;
     private int worldY;
-    private boolean collision;
+    private boolean collision = false;
 
     private final int defaultSize = 32;
     private final int scale = 2;
@@ -25,12 +25,11 @@ public class Tile {
     private Texture texture;
     private SolidArea solidArea;
 
-    public Tile(int x, int y, String sprite, KeyHandler keyH,boolean collision) {
+    public Tile(int x, int y, String sprite, KeyHandler keyH) {
         this.worldX = x * tileSize;
         this.worldY = y * tileSize;
         this.sprite = sprite;
         this.keyH = keyH;
-        this.collision = collision;
 
         loadTexture();
         solidArea = new SolidArea(this,collision,keyH);
@@ -50,12 +49,14 @@ public class Tile {
         if (sprite.equals("1")){
             batch = new SpriteBatch();
             texture = new Texture("textures/tiles/001.png");
+            collision = true;
         }else if (sprite.equals("2")){
             batch = new SpriteBatch();
             texture = new Texture("textures/tiles/002.png");
         }else if (sprite.equals("3")){
             batch = new SpriteBatch();
             texture = new Texture("textures/tiles/003.png");
+            collision = true;
         }else if (sprite.equals("4")){
             batch = new SpriteBatch();
             texture = new Texture("textures/tiles/004.png");
