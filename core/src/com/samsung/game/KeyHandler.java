@@ -48,7 +48,9 @@ public class KeyHandler {
 
 
                 if (Gdx.input.isTouched() && touchLimit()) {
-
+                    if (Gdx.input.justTouched()){
+                        System.out.println("tap");
+                    }
                 }
             }
         }
@@ -78,10 +80,6 @@ public class KeyHandler {
         this.playerSpeed = playerSpeed;
     }
 
-    private void boostSpeed() {
-        playerSpeed = defaultSpeed * 2;
-    }
-
     public static boolean touchLimit() {
         boolean limit = false;
         int scaleX = Gdx.graphics.getWidth() / 16;
@@ -93,9 +91,33 @@ public class KeyHandler {
         int limitX = (int) (Gdx.graphics.getWidth() - scaleX * scaleTouchX);
         int limitY = (int) (scaleY * scaleTouchY);
 
-        if (Gdx.input.getX() <  limitX && Gdx.input.getY() > limitY) {
+        if (Gdx.input.getX() < limitX && Gdx.input.getY() > limitY) {
             limit = true;
         }
         return limit;
     }
+
+    public static int controllerX(){
+        int limit = 100;
+        if (touchLimit()){
+            if (Gdx.input.justTouched()){
+                limit = Gdx.input.getX() - 150;
+            }else limit = 100;
+        }
+        return limit;
+    }
+    public static int controllerY(){
+        int limit = 100;
+        if(touchLimit()){
+            if (Gdx.input.justTouched()){
+                limit = Gdx.input.getY() * -1 + Gdx.graphics.getHeight() - 150;
+            }else limit = 100;
+        }
+        return limit;
+    }
+
+    private void boostSpeed() {
+        playerSpeed = defaultSpeed * 2;
+    }
+
 }
